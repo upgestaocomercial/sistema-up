@@ -7,7 +7,8 @@ const rotas = [
   { path: '/entrar', name: 'login', component: () => import('./telas/Login.vue'), meta: { publica: true } },
   { path: '/', name: 'inicio', component: () => import('./telas/Inicio.vue') },
   { path: '/clientes', name: 'clientes', component: EmConstrucao, meta: { titulo: 'Clientes', fase: 2 } },
-  { path: '/catalogo', name: 'catalogo', component: EmConstrucao, meta: { titulo: 'Catálogo', fase: 2 } },
+  { path: '/catalogo', name: 'catalogo', component: () => import('./telas/Catalogo.vue') },
+  { path: '/catalogo/importar', name: 'importar-tabela', component: () => import('./telas/ImportarTabela.vue'), meta: { cadastro: true } },
   { path: '/pedidos', name: 'pedidos', component: EmConstrucao, meta: { titulo: 'Pedidos', fase: 2 } },
   { path: '/pedidos/novo', name: 'novo-pedido', component: EmConstrucao, meta: { titulo: 'Novo pedido', fase: 2 } },
   { path: '/metas', name: 'metas', component: EmConstrucao, meta: { titulo: 'Metas', fase: 5 } },
@@ -28,6 +29,7 @@ router.beforeEach((to) => {
   }
   if (!sessao.usuario) return { name: 'login', query: to.fullPath !== '/' ? { volta: to.fullPath } : {} }
   if (to.meta.gestao && !ehGestao()) return { name: 'inicio' }
+  if (to.meta.cadastro && !['administrativo', 'gestao'].includes(sessao.usuario.perfil)) return { name: 'inicio' }
   if (to.meta.financeiro && !temFinanceiro()) return { name: 'inicio' }
   return true
 })

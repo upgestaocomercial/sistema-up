@@ -34,6 +34,26 @@ export async function api(metodo, caminho, corpo) {
   return dados
 }
 
+/** Envia arquivo (multipart). campos: objeto com valores simples */
+export async function enviarArquivo(caminho, arquivo, campos = {}) {
+  const fd = new FormData()
+  fd.append('arquivo', arquivo)
+  for (const [k, v] of Object.entries(campos)) fd.append(k, v)
+  let resp
+  try {
+    resp = await fetch('/api' + caminho, { method: 'POST', credentials: 'same-origin', headers: { 'X-Requested-With': 'sistema-up' }, body: fd })
+  } catch {
+    throw new ErroApi(0, 'Sem conexão com o servidor. Confira a internet e tente de novo.')
+  }
+  let dados = null
+  try { dados = await resp.json() } catch { /* sem JSON */ }
+  if (!resp.ok) {
+    if (resp.status === 401) aoPerderSessao()
+    throw new ErroApi(resp.status, dados?.erro || 'Não foi possível enviar o arquivo.', dados?.detalhes)
+  }
+  return dados
+}
+
 export const get = (c) => api('GET', c)
 export const post = (c, b = {}) => api('POST', c, b)
 export const put = (c, b = {}) => api('PUT', c, b)

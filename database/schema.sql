@@ -683,7 +683,10 @@ CREATE TABLE visitas (
 CREATE TABLE importacoes (
   id           BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   tipo         ENUM('clientes','produtos','precos','pedidos','faturamento','metas','visitas','extrato') NOT NULL,
+  representada_id BIGINT UNSIGNED NULL,
   arquivo      VARCHAR(255) NOT NULL,
+  nome_original VARCHAR(190) NULL,
+  config       TEXT NULL,             -- JSON: aba, linha do cabeçalho, colunas escolhidas, tabelas de destino
   linhas_total INT NOT NULL DEFAULT 0,
   linhas_ok    INT NOT NULL DEFAULT 0,
   linhas_erro  INT NOT NULL DEFAULT 0,
@@ -691,7 +694,22 @@ CREATE TABLE importacoes (
   situacao     ENUM('previa','importada','desfeita') NOT NULL DEFAULT 'previa',
   usuario_id   BIGINT UNSIGNED NULL,
   created_at   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+  importada_em DATETIME NULL,
+  PRIMARY KEY (id),
+  KEY ix_imp_tipo (tipo, representada_id, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- o que cada importação mudou, para poder desfazer
+CREATE TABLE importacao_alteracoes (
+  id             BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  importacao_id  BIGINT UNSIGNED NOT NULL,
+  tipo           ENUM('preco_novo','preco_alterado','preco_removido','produto_novo','produto_alterado','produto_desativado') NOT NULL,
+  tabela_id      BIGINT UNSIGNED NULL,
+  produto_id     BIGINT UNSIGNED NOT NULL,
+  antes          TEXT NULL,   -- JSON com os valores anteriores
+  PRIMARY KEY (id),
+  KEY ix_ia_imp (importacao_id),
+  CONSTRAINT fk_ia_imp FOREIGN KEY (importacao_id) REFERENCES importacoes(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- registros de envio do celular já processados (o mesmo envio repetido não duplica)
