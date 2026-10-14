@@ -527,7 +527,7 @@ final class ImportadorTabela
             $calc = self::calcular($imp, $cfg);
             $log = function (string $tipo, int $produtoId, ?int $tabelaId = null, ?array $antes = null) use ($id) {
                 Db::inserir('importacao_alteracoes', [
-                    'importacao_id' => $id, 'tipo' => $tipo, 'tabela_id' => $tabelaId, 'produto_id' => $produtoId,
+                    'importacao_id' => $id, 'tipo' => $tipo, 'tabela_id' => $tabelaId, 'registro_id' => $produtoId,
                     'antes' => $antes !== null ? json_encode($antes, JSON_UNESCAPED_UNICODE) : null,
                 ]);
             };
@@ -645,7 +645,7 @@ final class ImportadorTabela
             $n = 0;
             foreach ($alts as $a) {
                 $antes = $a['antes'] ? json_decode($a['antes'], true) : null;
-                $pid = (int) $a['produto_id'];
+                $pid = (int) $a['registro_id'];
                 switch ($a['tipo']) {
                     case 'preco_novo':
                         Db::exec('DELETE FROM precos WHERE tabela_id = ? AND produto_id = ?', [$a['tabela_id'], $pid]);

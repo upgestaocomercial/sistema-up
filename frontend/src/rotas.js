@@ -6,7 +6,10 @@ const EmConstrucao = () => import('./telas/EmConstrucao.vue')
 const rotas = [
   { path: '/entrar', name: 'login', component: () => import('./telas/Login.vue'), meta: { publica: true } },
   { path: '/', name: 'inicio', component: () => import('./telas/Inicio.vue') },
-  { path: '/clientes', name: 'clientes', component: EmConstrucao, meta: { titulo: 'Clientes', fase: 2 } },
+  { path: '/clientes', name: 'clientes', component: () => import('./telas/Clientes.vue') },
+  { path: '/clientes/novo', name: 'cliente-novo', component: () => import('./telas/Cliente.vue') },
+  { path: '/clientes/importar', name: 'importar-clientes', component: () => import('./telas/ImportarClientes.vue'), meta: { gestao: true } },
+  { path: '/clientes/:id(\\d+)', name: 'cliente', component: () => import('./telas/Cliente.vue') },
   { path: '/catalogo', name: 'catalogo', component: () => import('./telas/Catalogo.vue') },
   { path: '/catalogo/importar', name: 'importar-tabela', component: () => import('./telas/ImportarTabela.vue'), meta: { cadastro: true } },
   { path: '/pedidos', name: 'pedidos', component: EmConstrucao, meta: { titulo: 'Pedidos', fase: 2 } },

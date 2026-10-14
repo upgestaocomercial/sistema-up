@@ -21,8 +21,8 @@ final class Planilha
         return match ($ext) {
             'xlsx', 'xlsm' => self::lerXlsx($caminho, $aba ?? 0),
             'csv', 'txt' => ['abas' => ['Planilha'], 'linhas' => self::lerCsv($caminho)],
-            'xls' => throw new HttpErro(422, 'Arquivo .xls antigo. Abra no Excel e salve como .xlsx (Pasta de Trabalho do Excel).'),
-            default => throw new HttpErro(422, 'Formato não reconhecido. Envie .xlsx ou .csv.'),
+            'xls' => PlanilhaXls::ler($caminho, $aba ?? 0),
+            default => throw new HttpErro(422, 'Formato não reconhecido. Envie .xlsx, .xls ou .csv.'),
         };
     }
 

@@ -272,12 +272,17 @@ CREATE TABLE clientes (
   situacao               ENUM('ativo','inativo','bloqueado') NOT NULL DEFAULT 'ativo',
   motivo_bloqueio_id     BIGINT UNSIGNED NULL,
   observacoes            TEXT NULL,
+  data_cadastro          DATE NULL,
+  ultimo_pedido_data     DATE NULL,           -- vindo do Mercos até os pedidos serem importados
+  ultimo_pedido_valor    DECIMAL(14,2) NULL,
+  mercos_situacao        VARCHAR(30) NULL,    -- Prospect, Ativo, Inativo recente, Inativo antigo (como estava no Mercos)
+  acesso_b2b             TINYINT(1) NOT NULL DEFAULT 0,
   mercos_id              VARCHAR(40) NULL,
   created_at             DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at             DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY uq_cli_uuid (uuid_local),
-  KEY ix_cli_doc (cnpj_cpf),
+  UNIQUE KEY uq_cli_doc (cnpj_cpf),
   KEY ix_cli_vend (vendedor_id, situacao),
   KEY ix_cli_mun (municipio_ibge),
   KEY ix_cli_razao (razao_social),
@@ -703,9 +708,9 @@ CREATE TABLE importacoes (
 CREATE TABLE importacao_alteracoes (
   id             BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   importacao_id  BIGINT UNSIGNED NOT NULL,
-  tipo           ENUM('preco_novo','preco_alterado','preco_removido','produto_novo','produto_alterado','produto_desativado') NOT NULL,
+  tipo           ENUM('preco_novo','preco_alterado','preco_removido','produto_novo','produto_alterado','produto_desativado','cliente_novo','cliente_alterado') NOT NULL,
   tabela_id      BIGINT UNSIGNED NULL,
-  produto_id     BIGINT UNSIGNED NOT NULL,
+  registro_id    BIGINT UNSIGNED NOT NULL,   -- produto ou cliente, conforme o tipo
   antes          TEXT NULL,   -- JSON com os valores anteriores
   PRIMARY KEY (id),
   KEY ix_ia_imp (importacao_id),

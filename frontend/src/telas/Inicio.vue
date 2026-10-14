@@ -8,7 +8,7 @@ const hoje = new Intl.DateTimeFormat('pt-BR', { weekday: 'long', day: 'numeric',
 // Andamento da construção — some quando o sistema estiver completo
 const fases = [
   { n: 1, nome: 'Base: login, usuários, representadas e canais', pronto: true },
-  { n: 2, nome: 'Catálogo e importação de tabelas (pronto) · clientes, pedidos e faturamento', pronto: false },
+  { n: 2, nome: 'Catálogo, tabelas e clientes (prontos) · pedidos e faturamento', pronto: false },
   { n: 3, nome: 'Importação dos dados do Mercos', pronto: false },
   { n: 4, nome: 'Financeiro: comissões, contas e fluxo de caixa', pronto: false },
   { n: 5, nome: 'Metas, painel da TV, relatórios e fechamento', pronto: false },
