@@ -1,0 +1,17 @@
+{
+    "name": "upgestaocomercial/sistema-up",
+    "description": "Sistema UP de Gestão Comercial",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.1",
+        "ext-pdo": "*",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": { "Up\\": "src/" }
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

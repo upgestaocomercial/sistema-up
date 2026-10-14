@@ -1,0 +1,64 @@
+feature,area,priority,original,clone,notes
+Login com perfis (vendedor administrativo gestao tv),acesso,must,yes,no,
+Usuario de TV sem login manual (token do aparelho),acesso,must,no,no,resolve o problema de relogin do painel
+Registro de quem alterou o que (auditoria),acesso,should,no,no,
+Cadastro de representadas com % de comissao padrao,cadastros,must,yes,no,
+Tabelas de preco por representada (normal e Casa do Construtor),cadastros,must,yes,no,
+Desativar tabela sem apagar historico de vendas e metas,cadastros,must,no,no,evita a perda da Menegotti jan-set/2026
+Catalogo de produtos com codigo foto e preco,catalogo,must,yes,no,
+Busca de produto por codigo ou descricao,catalogo,must,yes,no,
+Desconto maximo por produto/tabela,catalogo,should,yes,no,
+Cadastro de clientes com contatos,clientes,must,yes,no,
+Busca de CNPJ ao cadastrar cliente,clientes,should,yes,no,API publica
+Validacao de territorio por municipio e representada,clientes,should,no,no,Menegotti area menor; demais area ampla
+Ficha do cliente com historico e mix por representada,clientes,must,yes,no,
+Carteira parada (clientes sem compra ha N dias),clientes,should,yes,no,
+Novo pedido no celular,pedidos,must,yes,no,
+Pedido offline com fila de envio,pedidos,must,yes,no,PWA + IndexedDB
+Condicao de pagamento por representada/cliente,pedidos,must,yes,no,
+Rascunho de pedido,pedidos,should,yes,no,
+PDF do pedido e envio por WhatsApp/e-mail,pedidos,must,yes,no,
+Status do pedido ate faturado,pedidos,must,yes,no,
+Importar faturamento das representadas (planilha),financeiro,must,no,no,
+Vincular nota fiscal ao pedido,financeiro,must,no,no,
+Comissoes a receber por representada e mes,financeiro,must,partial,no,Mercos tem controle/relatorio de comissao mas nao financeiro
+Conferencia do extrato de comissao x previsto,financeiro,must,no,no,
+Contas a receber com baixa,financeiro,must,no,no,
+Contas a pagar com categorias e recorrencia,financeiro,must,no,no,
+Comissao dos vendedores (calculo e fechamento mensal),financeiro,must,no,no,
+Fluxo de caixa realizado e projetado,financeiro,must,no,no,
+Varias contas bancarias,financeiro,should,no,no,
+Anexo de comprovantes,financeiro,should,no,no,
+DRE simples da representacao,financeiro,could,no,no,
+Metas por vendedor x representada x tabela x mes,metas,must,yes,no,
+Dias uteis com feriados,metas,must,no,no,Mercos so desconta sabado e domingo
+Acompanhamento % do dia e do mes,metas,must,yes,no,
+Painel da TV rotativo com atualizacao automatica,painel,must,no,no,migrar o painel atual do cPanel
+Fechamento mensal em PDF,painel,must,no,no,
+Relatorios de vendas com exportacao Excel,relatorios,must,yes,no,
+Curva ABC,relatorios,should,yes,no,
+Positivacao,relatorios,should,yes,no,
+Comparativo ano a ano,relatorios,should,yes,no,
+Agenda de visitas,visitas,must,yes,no,
+Check-in/check-out com GPS (offline),visitas,must,yes,no,
+Rota do dia no mapa,visitas,should,yes,no,
+Importacao de clientes produtos e pedidos via Excel,migracao,must,yes,no,dados exportados do Mercos pela propria UP
+Conferencia de totais apos importacao,migracao,must,no,no,
+Envio automatico de pedido ao sistema da representada,integracoes,could,no,no,depende de cada representada
+E-commerce B2B para clientes,ecommerce,could,yes,skip,segunda fase
+Pagamentos Pix/boleto/cartao,pagamentos,could,yes,skip,UP recebe comissao; nao vende direto
+Emissao de nota fiscal,fiscal,could,no,skip,fica com a contabilidade/prefeitura
+Pedido por audio/foto com IA,ia,could,yes,skip,fora da primeira versao
+Videochamada de venda,vendas,could,yes,skip,WhatsApp ja atende
+Representada dividida em canais (sem 27 pastas),cadastros,must,no,no,5 fabricas x canais; relatorio por fabrica somado
+Comissao por canal e por produto,financeiro,must,yes,no,
+Tipo de pedido venda/bonificacao/troca,pedidos,must,yes,no,so venda conta meta e comissao
+Etapas de acompanhamento do pedido (fabrica ate cliente),pedidos,must,yes,no,hoje status manuais 1 a 5
+Campos do pedido: OC / no pedido fabrica / comprador / aceita parcial / frete,pedidos,must,yes,no,
+Produto substituido por (aviso no pedido),catalogo,should,no,no,hoje escrito no nome do produto
+Disponibilidade e previsao do produto,catalogo,should,no,no,hoje escrito no nome do produto
+Segmentos tags e redes do cliente,clientes,must,yes,no,
+Regiao do cliente calculada pelo municipio,clientes,should,no,no,hoje misturada nas redes
+Anexos do cliente (ficha cadastral contrato social),clientes,should,yes,no,
+Limpeza de dados na importacao,migracao,must,no,no,contribuinte no nome; NAO TEM; e-mails falsos
+Funil de oportunidades,crm,could,yes,no,pouco usado hoje
