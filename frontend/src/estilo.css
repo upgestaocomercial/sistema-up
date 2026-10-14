@@ -3,14 +3,14 @@
 :root {
   --papel: #F2F4F7;        /* fundo: papel de cópia, frio */
   --folha: #FFFFFF;        /* superfícies */
-  --grafite: #1A1F27;      /* texto */
+  --grafite: #262526;      /* texto (cinza do logo, mais escuro) */
   --grafite-2: #4A5361;    /* texto secundário */
   --grafite-3: #7A8494;    /* texto apagado */
   --linha: #D5DBE3;        /* bordas */
   --linha-forte: #B5BFCC;
-  --carbono: #1D3C8F;      /* cor principal: tinta de carbono */
-  --carbono-escuro: #142B69;
-  --carbono-claro: #E6ECF8;
+  --carbono: #0174B3;      /* cor principal: azul da marca UP */
+  --carbono-escuro: #015A8C;
+  --carbono-claro: #E3F0F8;
   --carimbo: #B42B26;      /* erro, bloqueado, vencido */
   --carimbo-claro: #FBEAE9;
   --pago: #24704A;         /* pago, recebido, meta batida */

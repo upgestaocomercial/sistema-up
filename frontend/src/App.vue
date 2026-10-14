@@ -50,10 +50,9 @@ const icones = {
 <template>
   <div v-if="mostrarCasca" class="casca">
     <aside class="lateral" aria-label="Menu principal">
-      <div class="marca">
-        <span class="marca-up">UP</span>
-        <span class="marca-nome">Gestão Comercial</span>
-      </div>
+      <RouterLink :to="{ name: 'inicio' }" class="marca" aria-label="Início">
+        <img src="/logo-up.png" alt="UP Gestão Comercial" width="118" height="70" />
+      </RouterLink>
       <RouterLink :to="{ name: 'novo-pedido' }" class="botao novo-pedido">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path :d="icones.novo" /></svg>
         Novo pedido
@@ -112,9 +111,8 @@ const icones = {
   display: flex; flex-direction: column; gap: 16px; padding: 20px 14px;
   position: sticky; top: 0; height: 100dvh; overflow-y: auto;
 }
-.marca { display: flex; align-items: baseline; gap: 8px; padding: 0 8px; }
-.marca-up { font-family: var(--fonte-estreita); font-weight: 700; font-size: var(--t3); color: var(--carbono); letter-spacing: -0.02em; }
-.marca-nome { color: var(--grafite-2); font-size: var(--t-1); }
+.marca { display: block; padding: 0 8px; }
+.marca img { display: block; width: 118px; height: auto; }
 .novo-pedido svg, .item-menu svg, .barra-inferior svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 nav { display: grid; gap: 2px; }
 .item-menu {

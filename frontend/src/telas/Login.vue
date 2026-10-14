@@ -28,8 +28,7 @@ async function enviar() {
   <div class="tela-login">
     <form class="talao" @submit.prevent="enviar" novalidate>
       <header class="talao-topo">
-        <span class="marca">UP</span>
-        <span class="via">Gestão Comercial</span>
+        <img src="/logo-up.png" alt="UP Gestão Comercial" width="150" height="89" />
       </header>
       <h1>Entrar</h1>
       <p class="sub">Pedidos, clientes, metas e financeiro da UP.</p>
@@ -64,9 +63,7 @@ async function enviar() {
   border-radius: var(--r-folha); padding: 28px 24px 22px; display: grid; gap: 16px;
   border-top: 6px solid var(--carbono);
 }
-.talao-topo { display: flex; align-items: baseline; justify-content: space-between; }
-.marca { font-family: var(--fonte-estreita); font-weight: 700; font-size: var(--t4); color: var(--carbono); line-height: 1; letter-spacing: -0.03em; }
-.via { color: var(--grafite-2); font-size: var(--t-1); }
+.talao-topo img { display: block; width: 150px; height: auto; }
 h1 { font-size: var(--t2); margin-top: 4px; }
 .sub { color: var(--grafite-2); margin-top: -10px; }
 .rodape { font-size: var(--t-1); color: var(--grafite-3); }
